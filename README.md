@@ -79,6 +79,7 @@
       document.getElementById('home').style.display = 'none';
       document.getElementById('contacts').style.display = 'none';
       document.getElementById('news').style.display = 'none';
+
 <section>
     <h2>news project</h2>
     <div class="card">
