@@ -83,18 +83,20 @@
 <body>
   <header>LIVE RUSSIA COMMUNITY</header>
   <nav>
- 
-  <a href="https://forum.liverussia.online/index.php" target="_blank">forum</a>
-  <a href="#">about the project</a>
+  <a href="#">Главная</a>
+  <a href="https://liverussia.ru/forum" target="_blank">Форум</a>
+  <a href="#">О проекте</a>
+
   <div class="dropdown">
     <button class="dropbtn">Контакты ▼</button>
     <div class="dropdown-content">
       <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram</a>
       <a href="https://discord.gg/abcd1234" target="_blank">Discord</a>
       <a href="mailto:example@mail.com">Email</a>
+    </div>
+  </div>
 </nav>
- 
-
+      
   <div class="hero">
     <h1>Welcome to Live Russia</h1>
     <p>Be with us, play live russia!</p>
