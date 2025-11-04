@@ -151,12 +151,9 @@
 <section id="contacts">
   <h2>Контакты</h2>
   <div class="card">
-    <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram: @Carlo_Litvinenko</a>
-    <a href="https://discord.gg/abcd1234" target="_blank"> <a 
-herf="https://discord.gg/Swmz3kR9" 
-target=" _blank">Discord</a>
-</div>
-    <a href= Email: gladkovvova133@gmail.com</a>
+    <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram:https://t.me/CarloLitvinenko </a>
+    <a href="https://https://discord.gg/Swmz3kR9" target="_blank">
+<a href= "Email: gladkovvova133@gmail.com"</a>
   </div>
 </section>
 
