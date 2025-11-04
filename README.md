@@ -156,7 +156,7 @@
 herf="https://discord.gg/Swmz3kR9" 
 target=" _blank">Discord</a>
 </div>
-    <a href="mailto:example@mail.com">Email: gladkovvova133@gmail.com</a>
+    <a href= Email: gladkovvova133@gmail.com</a>
   </div>
 </section>
 
