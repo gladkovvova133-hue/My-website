@@ -87,15 +87,15 @@
   <a href="https://liverussia.ru/forum" target="_blank">Форум</a>
   <a href="#">О проекте</a>
 
-  <div class="dropdown">
-    <button class="dropbtn">Контакты ▼</button>
-    <div class="dropdown-content">
-      <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram</a>
-      <a href="https://discord.gg/abcd1234" target="_blank">Discord</a>
-      <a href="mailto:example@mail.com">Email</a>
-    </div>
-  </div>
+ <a href="contacts.html">Контакты</a>
 </nav>
+<main>
+    <h1>Контакты</h1>
+    <a href="https://t.me/Carlo_Litvinenko" target="_blank" class="contact-link">Telegram: @Carlo_Litvinenko</a>
+    <a href="https://discord.gg/abcd1234" target="_blank" class="contact-link">Discord: Live Russia</a>
+    <a href="mailto:example@mail.com" class="contact-link">Email: example@mail.com</a>
+  </main>
+
       
   <div class="hero">
     <h1>Welcome to Live Russia</h1>
