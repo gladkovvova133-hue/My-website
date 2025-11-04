@@ -152,8 +152,11 @@
   <h2>Контакты</h2>
   <div class="card">
     <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram: @Carlo_Litvinenko</a>
-    <a href="https://discord.gg/abcd1234" target="_blank">Discord: Live Russia</a>
-    <a href="mailto:example@mail.com">Email: example@mail.com</a>
+    <a href="https://discord.gg/abcd1234" target="_blank"> <a 
+herf="https://discord.gg/Swmz3kR9" 
+target=" _blank">Discord</a>
+</div>
+    <a href="mailto:example@mail.com">Email: gladkovvova133@gmail.com</a>
   </div>
 </section>
 
