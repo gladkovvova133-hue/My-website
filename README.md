@@ -23,12 +23,11 @@
 <body>
   <header>LIVE RUSSIA COMMUNITY</header>
   <nav>
-    <a href="index.html">Главная</a>
-    <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
-    <a href="about.html">О проекте</a>
-    <a href="contacts.html">Контакты</a>
-  </nav>
-
+  <a href="index.html">Главная</a>
+  <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
+  <a href="about.html">О проекте</a>
+  <a href="contacts.html">Контакты</a>
+</nav>
   <div class="hero">
     <h1>Welcome to Live Russia</h1>
     <p>Be with us, play live Russia!</p>
