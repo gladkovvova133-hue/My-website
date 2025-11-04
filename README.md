@@ -88,6 +88,7 @@
   <a href="#">О проекте</a>
   <a href="#">Контакты</a>
 </nav>
+  <a nref= "#">Контакты</a>
   </nav>
 
   <div class="hero">
@@ -98,7 +99,7 @@
   <section>
     <h2>Новости проекта</h2>
     <div class="card">
-      Скоро планируеться обновление семей, подпобне можно узнать в <a href="https://t.me/CarloLitvinenko" target="_blank">елеграмме </a>
+      Скоро планируеться обновление семей, подробнее можно узнать в <a href="https://t.me/CarloLitvinenko" target="_blank">телеграмме </a>
     </div>
 
     <h2>О нас</h2>
