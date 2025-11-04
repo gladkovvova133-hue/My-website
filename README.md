@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -84,32 +84,31 @@
   <header>LIVE RUSSIA COMMUNITY</header>
   <nav>
  
-  <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
-  <a href="#">О проекте</a>
-  <a href="#">Контакты</a>
- <a nref= "#">Контакты</a>
+  <a href="https://forum.liverussia.online/index.php" target="_blank">forum</a>
+  <a href="#">about the project</a>
+  <a href="#">contacts</a>
 </nav>
  
 
   <div class="hero">
-    <h1>Добро пожаловать в Live Russia</h1>
-    <p>Играй, развивайся, будь частью сообщества!</p>
+    <h1>Welcome to Live Russia</h1>
+    <p>Be with us, play live russia!</p>
   </div>
 
   <section>
     <h2>Новости проекта</h2>
     <div class="card">
-      Скоро планируеться обновление семей, подробнее можно узнать в <a href="https://t.me/CarloLitvinenko" target="_blank">телеграмме </a>
+      A family renewal is planned soon, more details can be found in <a href="https://t.me/CarloLitvinenko" target="_blank"> telegramme </a>
     </div>
 
-    <h2>О нас</h2>
+    <h2>about Us</h2>
     <div class="card">
-      <p>Live Russia — это уникальный проект, с уникальными системами, где есть два русских и два английских сервера, команда администрации, и игроки которые ценят наш проект</p>
+      <p>Live Russia — This is a unique project, with unique systems, where there are two Russian and two English servers, an administration team, and players who value our project.</p>
     </div>
   </section>
 
   <footer>
-    © 2025 Live Russia | Сделано сообществом игроков
+    © 2025 Live Russia | Created by carlo
   </footer>
 </body>
 </html>
