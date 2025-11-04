@@ -63,22 +63,25 @@
 
   <script>
     function showContacts() {
-      document.getElementById('contacts').style.display = 'block';
-      document.getElementById('about').style.display = 'none';
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('news').style.display = 'none';
-    }
-    function showHome() {
-      document.getElementById('home').style.display = 'block';
-      document.getElementById('news').style.display = 'block';
-      document.getElementById('about').style.display = 'none';
-      document.getElementById('contacts').style.display = 'none';
-    }
-    function showAbout() {
-      document.getElementById('about').style.display = 'block';
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('contacts').style.display = 'none';
-      document.getElementById('news').style.display = 'none';
+  document.getElementById('contacts').style.display = 'block';
+  document.getElementById('about').style.display = 'none';
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('news').style.display = 'none';
+}
+
+function showHome() {
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('news').style.display = 'block';
+  document.getElementById('about').style.display = 'none';
+  document.getElementById('contacts').style.display = 'none';
+}
+
+function showAbout() {
+  document.getElementById('about').style.display = 'block';
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('contacts').style.display = 'none';
+  document.getElementById('news').style.display = 'none';
+}
 
 <section>
     <h2>news project</h2>
