@@ -84,7 +84,7 @@
   <header>LIVE RUSSIA COMMUNITY</header>
   <nav>
   <a href="#">Главная</a>
-  <a href="https://liverussia.ru/forum" target="_blank">Форум</a>
+  <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
   <a href="#">О проекте</a>
 
  <a href="contacts.html">Контакты</a>
