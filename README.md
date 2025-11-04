@@ -1,81 +1,74 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой стильный сайт</title>
-    <style>
-        /* Общие стили */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, #f0f8ff, #d0e8ff);
-            color: #333;
-            text-align: center;
-        }
-
-        /* Заголовок */
-        h1 {
-            margin-top: 80px;
-            font-size: 56px;
-            color: #1a73e8;
-            animation: fadeIn 2s ease-in;
-        }
-
-        /* Подзаголовок */
-        p {
-            font-size: 20px;
-            color: #555;
-            margin: 20px 0;
-            animation: fadeIn 3s ease-in;
-        }
-
-        /* Кнопки */
-        .buttons a {
-            display: inline-block;
-            margin: 15px;
-            padding: 12px 30px;
-            font-size: 18px;
-            color: #fff;
-            background-color: #1a73e8;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4);
-        }
-
-        .buttons a:hover {
-            background-color: #155ab6;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.6);
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 60px;
-            font-size: 14px;
-            color: #888;
-        }
-
-        /* Анимация появления */
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мой сайт</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e90ff, #00bfff);
+      color: white;
+      text-align: center;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    input, textarea {
+      width: 90%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #ffaa00;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Привет, это мой стильный сайт!</h1>
-    <p>Добро пожаловать! Здесь можно разместить ссылки и любую информацию.</p>
+  <div class="card">
+    <h1>Мой персональный сайт</h1>
+    <input id="name" type="text" placeholder="Введите ваше имя"><br>
+    <textarea id="about" rows="5" placeholder="Расскажите о себе"></textarea><br>
+    <input id="contact" type="text" placeholder="Ваш контакт (email, Telegram и т.д.)"><br>
+    <button onclick="saveData()">💾 Сохранить</button>
 
-    <div class="buttons">
-        <a href="https://www.google.com" target="_blank">Перейти на Google</a>
-        <a href="https://gladkovvova133-hue.github.io/My-website/" target="_blank">На главную страницу</a>
-    </div>
+    <div id="output" style="margin-top: 30px; text-align: left;"></div>
+  </div>
 
-    <div class="footer">
-        © 2025 Мой стильный сайт
-    </div>
+  <script>
+    function saveData() {
+      const name = document.getElementById('name').value;
+      const about = document.getElementById('about').value;
+      const contact = document.getElementById('contact').value;
+      
+      document.getElementById('output').innerHTML = `
+        <h2>${name || 'Без имени'}</h2>
+        <p>${about || 'Информация не заполнена.'}</p>
+        <p><b>Контакты:</b> ${contact || '—'}</p>
+      `;
+    }
+  </script>
 </body>
 </html>
