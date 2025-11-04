@@ -87,9 +87,9 @@
   <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
   <a href="#">О проекте</a>
   <a href="#">Контакты</a>
+ <a nref= "#">Контакты</a>
 </nav>
-  <a nref= "#">Контакты</a>
-  </nav>
+ 
 
   <div class="hero">
     <h1>Добро пожаловать в Live Russia</h1>
