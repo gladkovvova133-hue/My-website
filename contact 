@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — Live Russia</title>
+  <style>
+    body { margin:0; font-family: Arial; background:#0d1117; color:white; }
+    header { background: linear-gradient(90deg,#ff0000,#0047ab); padding:20px; text-align:center; font-size:2em; font-weight:bold;}
+    nav { background:#161b22; display:flex; justify-content:center; gap:20px; padding:15px 0;}
+    nav a { color:white; text-decoration:none; font-weight:bold; }
+    nav a:hover { color:#58a6ff; }
+    main { max-width:800px; margin:50px auto; padding:20px; background:#161b22; border-radius:10px;}
+    h1 { color:#58a6ff; text-align:center; margin-bottom:30px;}
+    a.contact-link { color:#1da1f2; display:block; margin:10px 0; font-size:1.2em; text-decoration:none;}
+    a.contact-link:hover { text-decoration:underline;}
+    footer { text-align:center; padding:15px; background:#0d1117; color:#8b949e;}
+  </style>
+</head>
+<body>
+  <header>LIVE RUSSIA COMMUNITY</header>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
+    <a href="about.html">О проекте</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+
+  <main>
+    <h1>Контакты</h1>
+    <a href="https://t.me/Carlo_Litvinenko" target="_blank" class="contact-link">Telegram: @Carlo_Litvinenko</a>
+    <a href="https://discord.gg/abcd1234" target="_blank" class="contact-link">Discord: Live Russia</a>
+    <a href="mailto:example@mail.com" class="contact-link">Email: example@mail.com</a>
+  </main>
+
+  <footer>© 2025 Live Russia | Created by Carlo</footer>
+</body>
+</html>
