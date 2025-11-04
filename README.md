@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Russia — Главная</title>
+  <title>Live Russia — home </title>
   <style>
     body {
       margin: 0;
@@ -86,7 +86,12 @@
  
   <a href="https://forum.liverussia.online/index.php" target="_blank">forum</a>
   <a href="#">about the project</a>
-  <a href="#">contacts</a>
+  <div class="dropdown">
+    <button class="dropbtn">Контакты ▼</button>
+    <div class="dropdown-content">
+      <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram</a>
+      <a href="https://discord.gg/abcd1234" target="_blank">Discord</a>
+      <a href="mailto:example@mail.com">Email</a>
 </nav>
  
 
@@ -96,7 +101,7 @@
   </div>
 
   <section>
-    <h2>Новости проекта</h2>
+    <h2>news project</h2>
     <div class="card">
       A family renewal is planned soon, more details can be found in <a href="https://t.me/CarloLitvinenko" target="_blank"> telegramme </a>
     </div>
