@@ -152,8 +152,7 @@
   <h2>Контакты</h2>
   <div class="card">
     <a href="https://t.me/Carlo_Litvinenko" target="_blank">Telegram:https://t.me/CarloLitvinenko </a>
-    <a href="https://https://discord.gg/Swmz3kR9" target="_blank">
-<a href= "Email: gladkovvova133@gmail.com"</a>
+    <a href="https://https://discord.gg/Swmz3kR9" target="_blank"<a href= почта  "gladkovvova133@gmail.com"</a>
   </div>
 </section>
 
@@ -161,7 +160,7 @@
 <section id="news">
   <h2>Новости проекта</h2>
   <div class="card">
-    Скоро будет обновление семей, подробности в <a href="https://t.me/CarloLitvinenko" target="_blank">Telegram</a>
+    Скоро будет обновление семей, подробности в <a href= "https://t.me/CarloLitvinenko" target="_blank">Telegram</a>
   </div>
 </section>
 
