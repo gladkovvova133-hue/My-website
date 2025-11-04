@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Мой сайт</title>
+  <title>Все о Carlo</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,54 +21,24 @@
       margin: auto;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    input, textarea {
-      width: 90%;
-      margin: 10px 0;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
+    h1, h2 {
+      margin-bottom: 10px;
     }
-    button {
-      background: #ffcc00;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    button:hover {
-      background: #ffaa00;
-    }
-    h1 {
-      margin-bottom: 20px;
+    p {
+      font-size: 18px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Мой персональный сайт</h1>
-    <input id="name" type="text" placeholder="Введите ваше имя"><br>
-    <textarea id="about" rows="5" placeholder="Расскажите о себе"></textarea><br>
-    <input id="contact" type="text" placeholder="Ваш контакт (email, Telegram и т.д.)"><br>
-    <button onclick="saveData()">💾 Сохранить</button>
+    <h1>Carlo Litvinenko</h1>
+    <h2>Все о Carlo</h2>
+    <p> Играю на Live Russia, мой ник Carlo_Litvinenko, мой промокод - car,сервер Babylon, я являюсь гсх на англоязычном сервере .</p>
 
-    <div id="output" style="margin-top: 30px; text-align: left;"></div>
+    <h2>Контакты</h2>
+    <p>Telegram: @m4aka<br>
+    Email: gladkovvova133@gmail.com</p>
   </div>
-
-  <script>
-    function saveData() {
-      const name = document.getElementById('name').value;
-      const about = document.getElementById('about').value;
-      const contact = document.getElementById('contact').value;
-      
-      document.getElementById('output').innerHTML = `
-        <h2>${name || 'Без имени'}</h2>
-        <p>${about || 'Информация не заполнена.'}</p>
-        <p><b>Контакты:</b> ${contact || '—'}</p>
-      `;
-    }
-  </script>
 </body>
 </html>
