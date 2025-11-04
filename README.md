@@ -83,9 +83,7 @@
 <body>
   <header>LIVE RUSSIA COMMUNITY</header>
   <nav>
-    <a href="#">Главная</a>
-    <nav>
-  <a href="#">Главная</a>
+ 
   <a href="https://forum.liverussia.online/index.php" target="_blank">Форум</a>
   <a href="#">О проекте</a>
   <a href="#">Контакты</a>
@@ -100,8 +98,7 @@
   <section>
     <h2>Новости проекта</h2>
     <div class="card">
-      
-      
+      Скоро планируеться обновление семей, подпобне можно узнать в <a href="https://t.me/CarloLitvinenko" target="_blank">елеграмме </a>
     </div>
 
     <h2>О нас</h2>
