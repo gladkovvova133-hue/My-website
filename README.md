@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -79,6 +79,17 @@
       document.getElementById('home').style.display = 'none';
       document.getElementById('contacts').style.display = 'none';
       document.getElementById('news').style.display = 'none';
+<section>
+    <h2>news project</h2>
+    <div class="card">
+      A family renewal is planned soon, more details can be found in <a href="https://t.me/CarloLitvinenko" target="_blank"> telegramme </a>
+    </div>
+
+    <h2>about Us</h2>
+    <div class="card">
+      <p>Live Russia — This is a unique project, with unique systems, where there are two Russian and two English servers, an administration team, and players who value our project.</p>
+    </div>
+  </section>
     }
   </script>
 </body>
