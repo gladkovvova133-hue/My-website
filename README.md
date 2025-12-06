@@ -163,11 +163,7 @@ button:hover {
 
 <script>
 // ======== БАЗА ========
-let db = JSON.parse(localStorage.getItem("forumDB") || `{
-    "users": [],
-    "current": null,
-    "topics": []
-}`);
+let db = JSON.parse(localStorage.getItem("forumDB") || '{"users":[],"current":null,"topics":[]}');
 
 function save() {
     localStorage.setItem("forumDB", JSON.stringify(db));
