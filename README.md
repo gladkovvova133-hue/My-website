@@ -59,6 +59,7 @@ button:hover { background: #0b5cd4; }
 </head>
 <body>
 
+<!-- === Регистрация / Вход === -->
 <div class="container" id="regPanel">
     <h2>Регистрация / Вход</h2>
     <input id="regNick" placeholder="Ваш ник">
@@ -68,12 +69,14 @@ button:hover { background: #0b5cd4; }
     <div id="msg"></div>
 </div>
 
+<!-- === Форма вопросов (видна после входа) === -->
 <div class="container hidden" id="userPanel">
     <h2>Анонимный вопрос админам</h2>
     <textarea id="question" placeholder="Введите свой вопрос..."></textarea>
     <button onclick="sendQuestion()">Отправить</button>
 </div>
 
+<!-- === Панель админа (Carlo) === -->
 <div class="container hidden" id="adminPanel">
     <h2>Панель админа (Carlo)</h2>
     <div id="questionsList"></div>
