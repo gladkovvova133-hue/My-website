@@ -1,174 +1,140 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>Регистрация</title>
+<meta charset="UTF-8">
+<title>Анонимные вопросы + Панель админа</title>
 <style>
-    body {
-        font-family: Arial;
-        background: #0f1115;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    #box {
-        background: #1a1d23;
-        padding: 25px;
-        width: 330px;
-        border-radius: 12px;
-    }
-    h2 {
-        margin-top: 0;
-        text-align: center;
-    }
-    input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 6px;
-        border: none;
-    }
-    button {
-        width: 100%;
-        margin-top: 15px;
-        padding: 12px;
-        background: #0d6efd;
-        border: none;
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    button:hover {
-        background: #0b5cd4;
-    }
-    #err {
-        color: #ff4d4d;
-        margin-top: 10px;
-        text-align: center;
-        min-height: 20px;
-    }
-    #switch {
-        margin-top: 15px;
-        text-align: center;
-        cursor: pointer;
-        color: #9aa4b2;
-    }
-    #switch:hover {
-        color: white;
-    }
+body {
+    font-family: Arial;
+    background: #0f1115;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 50px;
+    margin: 0;
+}
+.container {
+    background: #1a1d23;
+    padding: 25px;
+    border-radius: 12px;
+    width: 450px;
+    margin: 10px;
+}
+textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 6px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #0d6efd;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+button:hover { background: #0b5cd4; }
+#msg { margin-top: 10px; min-height: 20px; }
+.question {
+    background: #2a2d35;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+.read-btn {
+    background: #28a745;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.read-btn:hover { background: #218838; }
 </style>
 </head>
 <body>
 
-<div id="box">
+<div class="container" id="userPanel">
+    <h2>Анонимный вопрос админам</h2>
+    <textarea id="question" placeholder="Введите свой вопрос..."></textarea>
+    <button onclick="sendQuestion()">Отправить</button>
+    <div id="msg"></div>
+</div>
 
-    <h2 id="title">Регистрация</h2>
-
-    <input id="nick" placeholder="Никнейм">
-    <input id="pass" type="password" placeholder="Пароль">
-
-    <button id="actionBtn" onclick="register()">Зарегистрироваться</button>
-
-    <div id="err"></div>
-
-    <div id="switch" onclick="toggleMode()">У меня уже есть аккаунт</div>
+<div class="container" id="adminPanel">
+    <h2>Панель админа</h2>
+    <div id="questionsList"></div>
 </div>
 
 <script>
-    function loadDB() {
-        let data = localStorage.getItem("forumDB");
-        if (!data) return { users: [], current: null };
-        try { return JSON.parse(data); } catch { return { users: [], current: null }; }
+// === Работа с вопросами ===
+function loadDB() {
+    let data = localStorage.getItem("questionsDB");
+    if(!data) return [];
+    try { return JSON.parse(data); } catch { return []; }
+}
+function saveDB(db) {
+    localStorage.setItem("questionsDB", JSON.stringify(db));
+}
+
+function sendQuestion() {
+    let q = document.getElementById("question").value.trim();
+    let msg = document.getElementById("msg");
+    if(!q) { msg.innerHTML = "Введите вопрос!"; msg.style.color="#ff4d4d"; return; }
+
+    let db = loadDB();
+    db.push({ question: q, date: new Date().toLocaleString(), read: false });
+    saveDB(db);
+
+    msg.innerHTML = "Вопрос отправлен!";
+    msg.style.color="#00ff80";
+    document.getElementById("question").value="";
+    showQuestions(); // обновляем сразу для админа
+}
+
+// === Админ-панель ===
+function showQuestions() {
+    let role = localStorage.getItem("role");
+    if(!role || !["admin","moderator","helper"].includes(role)){
+        document.getElementById("adminPanel").innerHTML = "<h2>Нет доступа</h2>";
+        return;
     }
 
-    function saveDB(db) {
-        localStorage.setItem("forumDB", JSON.stringify(db));
-    }
+    let db = loadDB();
+    let container = document.getElementById("questionsList");
+    container.innerHTML = '';
 
-    let mode = "reg";
-
-    function toggleMode() {
-        let title = document.getElementById("title");
-        let btn = document.getElementById("actionBtn");
-        let sw = document.getElementById("switch");
-        let err = document.getElementById("err");
-
-        err.innerHTML = "";
-
-        if (mode === "reg") {
-            mode = "login";
-            title.innerHTML = "Авторизация";
-            btn.innerHTML = "Войти";
-            btn.setAttribute("onclick", "login()");
-            sw.innerHTML = "У меня нет аккаунта";
-        } else {
-            mode = "reg";
-            title.innerHTML = "Регистрация";
-            btn.innerHTML = "Зарегистрироваться";
-            btn.setAttribute("onclick", "register()");
-            sw.innerHTML = "У меня уже есть аккаунт";
+    db.forEach((q,i)=>{
+        let div = document.createElement('div');
+        div.className='question';
+        div.innerHTML=`<strong>${q.date}</strong><br>${q.question}<br>Статус: ${q.read ? "Прочитано" : "Непрочитано"}`;
+        if(!q.read){
+            let btn = document.createElement('button');
+            btn.className='read-btn';
+            btn.innerText='Отметить как прочитано';
+            btn.onclick = ()=>{
+                db[i].read=true;
+                saveDB(db);
+                showQuestions();
+            };
+            div.appendChild(btn);
         }
-    }
+        container.appendChild(div);
+    });
+}
 
-    function register() {
-        let nick = document.getElementById("nick").value.trim();
-        let pass = document.getElementById("pass").value.trim();
-        let error = document.getElementById("err");
+// === Настройка роли для теста ===
+// Можно менять role на admin/moderator/helper/user
+if(!localStorage.getItem("role")) localStorage.setItem("role","admin");
 
-        if (!nick || !pass) {
-            error.innerHTML = "Заполните все поля!";
-            return;
-        }
-
-        let db = loadDB();
-
-        if (db.users.some(u => u.nick.toLowerCase() === nick.toLowerCase())) {
-            error.innerHTML = "Этот ник уже занят!";
-            return;
-        }
-
-        let newUser = {
-            nick: nick,
-            pass: pass,
-            role: nick === "Carlo" ? "admin" : "user"
-        };
-
-        db.users.push(newUser);
-        db.current = newUser.nick;
-
-        saveDB(db);
-
-        // Переход на главную
-        window.location.href = "index.html";
-    }
-
-    function login() {
-        let nick = document.getElementById("nick").value.trim();
-        let pass = document.getElementById("pass").value.trim();
-        let error = document.getElementById("err");
-
-        let db = loadDB();
-        let user = db.users.find(u => u.nick.toLowerCase() === nick.toLowerCase());
-
-        if (!user) {
-            error.innerHTML = "Пользователь не найден!";
-            return;
-        }
-
-        if (user.pass !== pass) {
-            error.innerHTML = "Неверный пароль!";
-            return;
-        }
-
-        db.current = user.nick;
-        saveDB(db);
-
-        // Переход на главную
-        window.location.href = "index.html";
-    }
+// Показываем сразу вопросы для админа
+showQuestions();
 </script>
 
 </body>
