@@ -141,6 +141,12 @@
       align-items:flex-start;
       padding:12px;
       border-radius:10px;
+profile: {
+  name: "Гость",
+  bio: "Локальная сессия",
+  avatarLetter: "G",
+  role: "guest" // guest, user, moderator, admin
+}
       background: rgba(255,255,255,0.015);
       border:1px solid rgba(255,255,255,0.02);
       transition:transform .15s, box-shadow .15s;
