@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Анонимные вопросы + Панель админа</title>
+<title>Анонимные вопросы + Панель Carlo</title>
 <style>
 body {
     font-family: Arial;
@@ -22,15 +22,14 @@ body {
     width: 450px;
     margin: 10px;
 }
-textarea {
+input, textarea {
     width: 100%;
-    height: 80px;
     border-radius: 6px;
     border: none;
     padding: 10px;
     margin-bottom: 10px;
-    resize: none;
 }
+textarea { height: 80px; resize: none; }
 button {
     width: 100%;
     padding: 12px;
@@ -56,19 +55,32 @@ button:hover { background: #0b5cd4; }
     font-size: 12px;
 }
 .read-btn:hover { background: #218838; }
+.reply-btn {
+    background: #ffc107;
+    margin-top: 5px;
+    font-size: 12px;
+    color: black;
+}
+.reply-btn:hover { background: #e0a800; }
+.reply-text {
+    margin-top:5px;
+    font-style: italic;
+    color: #00ff80;
+}
 </style>
 </head>
 <body>
 
 <div class="container" id="userPanel">
     <h2>Анонимный вопрос админам</h2>
+    <input id="nickInput" placeholder="Ваш ник (необязательно)">
     <textarea id="question" placeholder="Введите свой вопрос..."></textarea>
     <button onclick="sendQuestion()">Отправить</button>
     <div id="msg"></div>
 </div>
 
 <div class="container" id="adminPanel">
-    <h2>Панель админа</h2>
+    <h2>Панель админа (Carlo)</h2>
     <div id="questionsList"></div>
 </div>
 
@@ -85,23 +97,25 @@ function saveDB(db) {
 
 function sendQuestion() {
     let q = document.getElementById("question").value.trim();
+    let nick = document.getElementById("nickInput").value.trim();
     let msg = document.getElementById("msg");
     if(!q) { msg.innerHTML = "Введите вопрос!"; msg.style.color="#ff4d4d"; return; }
 
     let db = loadDB();
-    db.push({ question: q, date: new Date().toLocaleString(), read: false });
+    db.push({ question: q, date: new Date().toLocaleString(), read: false, reply: "", nick: nick || "Аноним" });
     saveDB(db);
 
     msg.innerHTML = "Вопрос отправлен!";
     msg.style.color="#00ff80";
     document.getElementById("question").value="";
-    showQuestions(); // обновляем сразу для админа
+    document.getElementById("nickInput").value="";
+    showQuestions();
 }
 
 // === Админ-панель ===
 function showQuestions() {
-    let role = localStorage.getItem("role");
-    if(!role || !["admin","moderator","helper"].includes(role)){
+    let nick = localStorage.getItem("nick");
+    if(!nick || nick !== "Carlo"){
         document.getElementById("adminPanel").innerHTML = "<h2>Нет доступа</h2>";
         return;
     }
@@ -113,25 +127,52 @@ function showQuestions() {
     db.forEach((q,i)=>{
         let div = document.createElement('div');
         div.className='question';
-        div.innerHTML=`<strong>${q.date}</strong><br>${q.question}<br>Статус: ${q.read ? "Прочитано" : "Непрочитано"}`;
+        div.innerHTML=`<strong>${q.date}</strong> | От: <strong>${q.nick}</strong><br>${q.question}<br>Статус: ${q.read ? "Прочитано" : "Непрочитано"}`;
+        if(q.reply) {
+            let replyDiv = document.createElement('div');
+            replyDiv.className='reply-text';
+            replyDiv.innerText="Ответ: "+q.reply;
+            div.appendChild(replyDiv);
+        }
+
         if(!q.read){
-            let btn = document.createElement('button');
-            btn.className='read-btn';
-            btn.innerText='Отметить как прочитано';
-            btn.onclick = ()=>{
+            let readBtn = document.createElement('button');
+            readBtn.className='read-btn';
+            readBtn.innerText='Отметить как прочитано';
+            readBtn.onclick = ()=>{
                 db[i].read=true;
                 saveDB(db);
                 showQuestions();
             };
-            div.appendChild(btn);
+            div.appendChild(readBtn);
         }
+
+        if(!q.reply){
+            let input = document.createElement('input');
+            input.className='reply';
+            input.placeholder='Ваш ответ...';
+            let replyBtn = document.createElement('button');
+            replyBtn.className='reply-btn';
+            replyBtn.innerText='Ответить';
+            replyBtn.onclick = ()=>{
+                let answer = input.value.trim();
+                if(answer){
+                    db[i].reply = answer;
+                    db[i].read = true;
+                    saveDB(db);
+                    showQuestions();
+                }
+            };
+            div.appendChild(input);
+            div.appendChild(replyBtn);
+        }
+
         container.appendChild(div);
     });
 }
 
-// === Настройка роли для теста ===
-// Можно менять role на admin/moderator/helper/user
-if(!localStorage.getItem("role")) localStorage.setItem("role","admin");
+// === Настройка пользователя для теста ===
+if(!localStorage.getItem("nick")) localStorage.setItem("nick","Carlo");
 
 // Показываем сразу вопросы для админа
 showQuestions();
