@@ -1,109 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Live Russia – Форум</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Russia Forum</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #121212;
-    color: #eaeaea;
+    background: #0f0f0f;
+    color: #e6e6e6;
 }
-header {
-    background: #1e1e1e;
-    padding: 15px;
-    font-size: 20px;
-    text-align: center;
-    border-bottom: 1px solid #333;
-}
-main {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
-button {
-    background: #2b2b2b;
-    color: white;
-    border: 1px solid #444;
-    padding: 8px 12px;
-    border-radius: 6px;
-}
-button:hover { background: #3b3b3b; cursor: pointer; }
 
-.card {
-    background: #1c1c1c;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #2b2b2b;
+/* HEADER */
+header {
+    background: #1a1a1a;
+    padding: 18px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.4);
 }
+
+/* CARDS */
+.card {
+    background: #161616;
+    border: 1px solid #2b2b2b;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.5);
+}
+
+/* INPUTS */
 .input {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    background: #222;
-    border: 1px solid #444;
-    color: white;
-    border-radius: 6px;
+    background: #1d1d1d;
+    border: 1px solid #333;
+    padding: 12px;
+    margin-top: 10px;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
 }
-.topic-title { font-size: 18px; font-weight: bold; color: #4aa3ff; cursor: pointer; }
-.reply { margin-top: 10px; padding: 10px; background: #181818; border-radius: 6px; border: 1px solid #333; }
+.input:focus {
+    outline: none;
+    border-color: #4aa3ff;
+}
+
+/* BUTTON */
+button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 15px;
+    transition: 0.2s;
+}
+button:hover {
+    background: #4aa3ff;
+    cursor: pointer;
+}
+
+/* TOPICS */
+.topic-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4aa3ff;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+.reply {
+    padding: 10px;
+    background: #111;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* ROLES COLORS */
 .role-admin { color: #ff4e4e; }
 .role-mod { color: #6fa8ff; }
 .role-user { color: #5bd45b; }
 .role-guest { color: #bdbdbd; }
+
+/* ROLE PANEL */
+.role-panel {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #0f0f0f;
+}
 </style>
 </head>
 
 <body>
 
-<header>
-    Live Russia — Форум (локальная версия)
-</header>
+<header>Live Russia — Форум</header>
 
 <main>
 
-<!-- Блок логина -->
-<div id="loginBlock" class="card">
-    <h3>Войти</h3>
-    <input id="loginName" class="input" placeholder="Введите ник">
-    <button onclick="login()">Войти</button>
+<!-- РЕГИСТРАЦИЯ -->
+<div id="registerBlock" class="card">
+    <h2>Регистрация</h2>
+    <input id="regNick" class="input" placeholder="Ваш ник">
+    <input id="regPass" type="password" class="input" placeholder="Пароль">
+    <button onclick="registerUser()">Зарегистрироваться</button>
 </div>
 
-<!-- Профиль -->
+<!-- ПРОФИЛЬ -->
 <div id="profileBlock" class="card" style="display:none;">
-    <h3>Профиль</h3>
-    <p>Ник: <span id="profName"></span></p>
-    <p>Роль: <span id="profRole"></span></p>
+    <h2>Профиль</h2>
+    <p>Ник: <span id="pName"></span></p>
+    <p>Роль: <span id="pRole"></span></p>
     <button onclick="logout()">Выйти</button>
 </div>
 
-<!-- Создание темы -->
+<!-- ВЫДАЧА РОЛЕЙ — доступ только Carlo -->
+<div id="roleBlock" class="card" style="display:none;">
+    <h2>Управление ролями</h2>
+    <div class="role-panel">
+        <input id="roleNick" class="input" placeholder="Кому выдать роль">
+        <select id="roleSelect" class="input">
+            <option value="user">User</option>
+            <option value="moderator">Moderator</option>
+            <option value="admin">Admin</option>
+        </select>
+        <button onclick="giveRole()">Выдать роль</button>
+    </div>
+</div>
+
+<!-- СОЗДАНИЕ ТЕМЫ -->
 <div id="createTopicBlock" class="card" style="display:none;">
-    <h3>Создать тему</h3>
-    <input id="topicTitle" class="input" placeholder="Заголовок темы">
-    <textarea id="topicText" class="input" style="height: 100px;" placeholder="Текст темы"></textarea>
+    <h2>Создать тему</h2>
+    <input id="topicTitle" class="input" placeholder="Название темы">
+    <textarea id="topicText" class="input" placeholder="Текст темы" style="height:100px;"></textarea>
     <button onclick="createTopic()">Опубликовать</button>
 </div>
 
-<!-- Список тем -->
+<!-- СПИСОК ТЕМ -->
 <div class="card">
-    <h3>Темы</h3>
+    <h2>Темы</h2>
     <div id="topicsList"></div>
 </div>
 
-<!-- Просмотр темы -->
+<!-- ПРОСМОТР ТЕМЫ -->
 <div id="viewTopic" class="card" style="display:none;"></div>
 
 </main>
 
+
 <script>
-// ======= LOCAL DB =======
+// ======== БАЗА ========
 let db = JSON.parse(localStorage.getItem("forumDB") || `{
-    "user": null,
+    "users": [],
+    "current": null,
     "topics": []
 }`);
 
@@ -111,40 +167,73 @@ function save() {
     localStorage.setItem("forumDB", JSON.stringify(db));
 }
 
-// ======= ROLES =======
-function getRoleColor(role) {
+// ======== РОЛИ ========
+function roleColor(r) {
     return {
         admin: "role-admin",
         moderator: "role-mod",
         user: "role-user",
         guest: "role-guest"
-    }[role] || "role-guest";
+    }[r] || "role-guest";
 }
 
-// ======= LOGIN =======
-function login() {
-    const name = document.getElementById("loginName").value.trim();
-    if(name.length < 2) return alert("Ник слишком короткий");
+// ======== РЕГИСТРАЦИЯ ========
+function registerUser() {
+    const nick = regNick.value.trim();
+    const pass = regPass.value;
 
+    if (!nick || !pass) return alert("Введите ник и пароль");
+    if (nick.length < 2) return alert("Ник слишком короткий");
+
+    // проверка дубликатов
+    if (db.users.find(u => u.nick.toLowerCase() === nick.toLowerCase()))
+        return alert("Этот ник уже занят!");
+
+    // Карло = супер-админ
     let role = "user";
-    if(name === "Admin") role = "admin";
-    else if(name.startsWith("Mod_")) role = "moderator";
+    if (nick === "Carlo") role = "admin";
 
-    db.user = { name, role };
+    db.users.push({
+        nick,
+        pass: btoa(pass), // простая шифровка
+        role
+    });
+
+    db.current = nick;
     save();
-    renderAll();
+    render();
 }
 
+// ======== ВЫХОД ========
 function logout() {
-    db.user = null;
+    db.current = null;
     save();
-    renderAll();
+    render();
 }
 
-// ======= CREATE TOPIC =======
+// ======== ОПРЕДЕЛЕНИЕ ТЕКУЩЕГО ПОЛЬЗОВАТЕЛЯ ========
+function me() {
+    return db.users.find(u => u.nick === db.current);
+}
+
+// ======== ВЫДАЧА РОЛИ ========
+function giveRole() {
+    const user = db.users.find(u => u.nick === roleNick.value.trim());
+    if (!user) return alert("Пользователь не найден");
+
+    const newRole = roleSelect.value;
+    user.role = newRole;
+
+    save();
+    alert("Роль выдана");
+    render();
+}
+
+// ======== ТЕМА: СОЗДАНИЕ ========
 function createTopic() {
-    if(!db.user || !["user","moderator","admin"].includes(db.user.role))
-        return alert("У вас нет прав создавать темы");
+    const user = me();
+    if (!user || !["user","moderator","admin"].includes(user.role))
+        return alert("Нет прав");
 
     const title = topicTitle.value.trim();
     const text = topicText.value.trim();
@@ -152,38 +241,40 @@ function createTopic() {
 
     db.topics.push({
         id: Date.now(),
-        author: db.user.name,
-        role: db.user.role,
         title,
         text,
+        author: user.nick,
+        role: user.role,
         replies: []
     });
+
     save();
     topicTitle.value = "";
     topicText.value = "";
-    renderAll();
+    renderTopics();
 }
 
-// ======= VIEW TOPIC =======
+// ======== ТЕМА: ОТКРЫТЬ ========
 function openTopic(id) {
-    const topic = db.topics.find(t => t.id === id);
-    if (!topic) return;
+    const t = db.topics.find(x => x.id === id);
+    if (!t) return;
 
     let html = `
-        <h2>${topic.title}</h2>
-        <p><b class="${getRoleColor(topic.role)}">${topic.author}</b>: ${topic.text}</p>
+        <h2>${t.title}</h2>
+        <p><b class="${roleColor(t.role)}">${t.author}</b>: ${t.text}</p>
         <hr>
         <h3>Ответы:</h3>
     `;
 
-    topic.replies.forEach(r => {
+    t.replies.forEach(r => {
         html += `
-        <div class="reply">
-            <b class="${getRoleColor(r.role)}">${r.author}</b>: ${r.text}
-        </div>`;
+            <div class="reply">
+                <b class="${roleColor(r.role)}">${r.author}</b>: ${r.text}
+            </div>
+        `;
     });
 
-    if(db.user && ["user","moderator","admin"].includes(db.user.role)) {
+    if (me() && ["user","moderator","admin"].includes(me().role)) {
         html += `
             <textarea id="replyText" class="input" placeholder="Ваш ответ"></textarea>
             <button onclick="replyTopic(${id})">Ответить</button>
@@ -196,15 +287,20 @@ function openTopic(id) {
     viewTopic.style.display = "block";
 }
 
-// ======= REPLY TO TOPIC =======
+function closeTopic() {
+    viewTopic.style.display = "none";
+}
+
+// ======== ТЕМА: ОТВЕТ ========
 function replyTopic(id) {
-    const topic = db.topics.find(t => t.id === id);
+    const t = db.topics.find(x => x.id === id);
+    const user = me();
     const txt = replyText.value.trim();
     if (!txt) return;
 
-    topic.replies.push({
-        author: db.user.name,
-        role: db.user.role,
+    t.replies.push({
+        author: user.nick,
+        role: user.role,
         text: txt
     });
 
@@ -212,45 +308,44 @@ function replyTopic(id) {
     openTopic(id);
 }
 
-function closeTopic() {
-    viewTopic.style.display = "none";
-}
-
-// ======= RENDER =======
+// ======== ОТРИСОВКА ТЕМ ========
 function renderTopics() {
     topicsList.innerHTML = "";
     db.topics.forEach(t => {
         topicsList.innerHTML += `
             <div class="card" style="margin-bottom:10px;">
                 <div class="topic-title" onclick="openTopic(${t.id})">${t.title}</div>
-                <div><b class="${getRoleColor(t.role)}">${t.author}</b></div>
+                <div><b class="${roleColor(t.role)}">${t.author}</b></div>
             </div>
         `;
     });
 }
 
-function renderAll() {
-    if (db.user) {
-        loginBlock.style.display = "none";
-        profileBlock.style.display = "block";
-        profName.textContent = db.user.name;
-        profRole.textContent = db.user.role;
+// ======== ГЛАВНАЯ РЕНДЕР ========
+function render() {
+    const user = me();
 
-        if(["user","moderator","admin"].includes(db.user.role))
-            createTopicBlock.style.display = "block";
-        else
-            createTopicBlock.style.display = "none";
-
-    } else {
-        loginBlock.style.display = "block";
+    if (!user) {
+        registerBlock.style.display = "block";
         profileBlock.style.display = "none";
         createTopicBlock.style.display = "none";
+        roleBlock.style.display = "none";
+    } else {
+        registerBlock.style.display = "none";
+        profileBlock.style.display = "block";
+        pName.textContent = user.nick;
+        pRole.textContent = user.role;
+
+        createTopicBlock.style.display = "block";
+
+        // Карло = выдача ролей
+        roleBlock.style.display = user.nick === "Carlo" ? "block" : "none";
     }
 
     renderTopics();
 }
 
-renderAll();
+render();
 </script>
 
 </body>
