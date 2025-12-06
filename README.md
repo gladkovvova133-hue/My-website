@@ -195,6 +195,7 @@ function registerUser() {
 
     if (!nick || !pass) return alert("Введите ник и пароль");
     if (nick.length < 2) return alert("Ник слишком короткий");
+    if (nick.length > 16) return alert("Ник слишком длиный");
 
     if (db.users.find(u => u.nick.toLowerCase() === nick.toLowerCase()))
         return alert("Этот ник уже занят!");
