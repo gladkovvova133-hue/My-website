@@ -52,7 +52,7 @@ button:hover {
     <h2>Регистрация</h2>
     <input id="nick" placeholder="Введите ник">
     <input id="pass" type="password" placeholder="Введите пароль">
-    <button onclick="register()">Зарегистрироваться</button>
+   <button onclick="register()">Зарегистрироваться</button>
     <div id="err"></div>
 </div>
 
